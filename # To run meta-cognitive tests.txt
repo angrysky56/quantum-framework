@@ -1,0 +1,13 @@
+# Navigate to framework root
+cd C:\quantum-framework
+
+# Create your virtual environment
+# i.e.: 
+conda create -n nexus1 python=3.11
+conda activate nexus1
+
+# Ensure environment dependencies
+pip install pytest numpy scipy torch cupy-cuda12x numba jax
+
+# Run meta-cognitive tests
+python -m pytest tests/quantum_meta/meta_cognitive/test_processor.py -v
