@@ -32,7 +32,7 @@ Inspired by the concept of a Turing machine with an infinite tape, the Quantum F
 
 ## Getting Started
 
-To explore the capabilities of the Quantum Framework, please refer to the [documentation](docs/README.md) and [Docker Quickstart](quantum_framework/containerization.txt) for installation instructions, tutorials, and examples.
+To explore the capabilities of the Quantum Framework, please refer to the [documentation](docs/README.md) and [Docker Quickstart](https://github.com/angrysky56/quantum-framework/blob/main/%23%20quantum_framework%20containerization.txt) for installation instructions, tutorials, and examples.
 
 ## Contributing
 
