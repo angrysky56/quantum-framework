@@ -1,0 +1,39 @@
+# quantum_framework containerization
+
+# Pull latest images
+docker-compose -f docker-compose.integrated.yml pull
+
+# Start core services
+docker-compose -f docker-compose.integrated.yml up -d etcd minio
+
+# Wait for initialization
+Start-Sleep -Seconds 10
+
+# Start Milvus standalone
+docker-compose -f docker-compose.integrated.yml up -d standalone
+
+# Start up 
+docker-compose -f docker-compose.integrated.yml up -d nexus_prime quantum_engine
+
+Check Network
+docker network ls
+
+# Troubleshoot
+# First clean up
+# Stop and remove the current container
+docker-compose -f docker-compose.integrated.yml down
+
+# Remove any lingering networks
+docker network prune
+
+# Then start up again
+docker-compose -f docker-compose.integrated.yml up -d nexus_prime quantum_engine
+---
+
+# Stop and remove the current container
+docker-compose -f docker-compose.integrated.yml down
+
+# Start it again
+docker-compose -f docker-compose.integrated.yml up -d
+
+set password: quantum_framework

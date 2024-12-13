@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  quantum-test:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./test-results:/app/test-results
+    environment:
+      - PYTHONPATH=/app
+      - TEST_MODE=development
+    command: ["pytest", "tests/test_quantum_cognitive.py", "-v", "--cov=src", "--cov-report=html:/app/test-results/coverage"]
