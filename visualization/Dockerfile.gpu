@@ -1,0 +1,30 @@
+# GPU-enabled Visualization Service
+FROM nvidia/cuda:12.1.0-base-ubuntu22.04
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    python3-dev \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# CUDA configuration
+ENV CUDA_HOME=/usr/local/cuda
+ENV LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
+ENV PATH=${CUDA_HOME}/bin:${PATH}
+
+# Install Python packages
+COPY requirements.gpu.txt .
+RUN pip3 install -r requirements.gpu.txt
+
+# Application code
+COPY . .
+
+# Expose visualization port
+EXPOSE 8050
+
+# Run visualization server
+CMD ["python3", "app_gpu.py"]

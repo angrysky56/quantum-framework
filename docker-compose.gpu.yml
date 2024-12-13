@@ -1,0 +1,68 @@
+### Advanced Quantum Computation Framework
+### Optimization Architecture:
+# Ψ(x) = Σ_n c_n φ_n(x) - State Decomposition
+# H = T + V - Hamiltonian Splitting
+# ρ(t) = e^{-iHt/ℏ}ρ(0)e^{iHt/ℏ} - Density Evolution
+
+version: '3.8'
+
+services:
+  quantum_engine:
+    image: jupyter/scipy-notebook:latest
+    runtime: nvidia
+    container_name: quantum_compute_engine
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - CUDA_VISIBLE_DEVICES=0
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=quantum_framework
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+        limits:
+          memory: 10G  # Reserve 2GB for system
+          cpus: '6'    # Leave 2 cores for system
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/home/jovyan/data
+      - ./models:/home/jovyan/models
+      - ./cache:/home/jovyan/cache
+    ports:
+      - "8888:8888"
+    command: >
+      bash -c "
+        start.sh jupyter lab &&
+        pip install --no-cache-dir \
+          numpy scipy matplotlib \
+          cupy-cuda12x \
+          torch torchvision --extra-index-url https://download.pytorch.org/whl/cu121 \
+          jax jaxlib -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html \
+          qutip pytest hypothesis"
+
+  visualization:
+    build:
+      context: ./visualization
+      dockerfile: Dockerfile.gpu
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - DISPLAY=$DISPLAY
+    volumes:
+      - ./visualization:/app
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    ports:
+      - "8050:8050"
+    depends_on:
+      - quantum_engine
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

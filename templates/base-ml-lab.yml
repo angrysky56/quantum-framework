@@ -1,0 +1,38 @@
+### ML Laboratory Base Configuration
+### Optimization Parameters:
+# λ_mem = memory utilization factor
+# η_cpu = processing efficiency coefficient
+# Φ_gpu = GPU throughput optimization
+
+version: '3.8'
+
+x-base-config: &base_config
+  restart: unless-stopped
+  logging:
+    driver: "json-file"
+    options:
+      max-size: "100m"
+      max-file: "3"
+
+services:
+  jupyter:
+    <<: *base_config
+    image: jupyter/tensorflow-notebook:latest
+    container_name: ml_lab_${EXPERIMENT_ID:-base}
+    ports:
+      - "${JUPYTER_PORT:-8888}:8888"
+    volumes:
+      - ./data:/home/jovyan/work
+      - ./checkpoints:/home/jovyan/checkpoints
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN:-playground}
+      - NVIDIA_VISIBLE_DEVICES=${NVIDIA_DEVICES:-all}
+      - EXPERIMENT_ID=${EXPERIMENT_ID:-base}
+    deploy:
+      resources:
+        limits:
+          memory: ${MEMORY_LIMIT:-16G}
+          cpus: ${CPU_LIMIT:-2}
+    command: >
+      start.sh jupyter lab
