@@ -32,7 +32,7 @@ Inspired by the concept of a Turing machine with an infinite tape, the Quantum F
 
 ## Getting Started
 
-To explore the capabilities of the Quantum Framework, please refer to the [documentation](docs/README.md) and [Docker Quickstart](https://github.com/angrysky56/quantum-framework/blob/main/%23%20quantum_framework%20containerization.txt) for installation instructions, tutorials, and examples. Once you have the Docker containers running I suggest using VS Code to run the [notebook](https://github.com/angrysky56/quantum-framework/blob/Nexus-Prime/notebooks/quantum_pattern_debugging_fixed.ipynb) for the example in the image 
+To explore the capabilities of the Quantum Framework, please refer to the [documentation](https://github.com/angrysky56/quantum-framework/wiki) and [Docker Quickstart](https://github.com/angrysky56/quantum-framework/blob/main/%23%20quantum_framework%20containerization.txt) for installation instructions, tutorials, and examples. Once you have the Docker containers running I suggest using VS Code to run the [notebook](https://github.com/angrysky56/quantum-framework/blob/Nexus-Prime/notebooks/quantum_pattern_debugging_fixed.ipynb) for the example in the image 
 
 ![image](https://github.com/user-attachments/assets/26bf205e-6ffc-435a-ae8b-15464cb28d92)
 
