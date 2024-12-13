@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  vector_dss:
+    image: python:3.9-slim
+    container_name: iris_vector_dss
+    volumes:
+      - ./vector_dss:/app
+    ports:
+      - "8002:8000"
+    networks:
+      - milvus_default
+    environment:
+      - MILVUS_HOST=standalone
+      - MILVUS_PORT=19530
+    command: >
+      bash -c "cd /app && 
+      pip install pymilvus==2.3.3 numpy>=1.21.0 &&
+      python setup_vector_db.py"
+
+networks:
+  milvus_default:
+    external: true

@@ -1,0 +1,15 @@
+{
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.indexing": false,
+    "python.analysis.diagnosticMode": "off",
+    "files.autoSave": "off",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "Nexus",
+            "database": "${workspaceFolder:Nexus-Prime-pre-build}/NEXUS_PRIME.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

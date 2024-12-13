@@ -1,0 +1,22 @@
+services:
+  vector_qpre:
+    image: python:3.9-slim
+    working_dir: /app
+    volumes:
+      - ./vector_qpre:/app
+    command: >
+      sh -c "pip install -r requirements.txt && python main.py"
+    environment:
+      - PYTHONPATH=/app
+      - SYSTEM_TYPE=QPRE
+      - MILVUS_HOST=milvus-standalone
+      - MILVUS_PORT=19530
+    networks:
+      - milvus_network
+      - dev-environment_default
+
+networks:
+  milvus_network:
+    external: true
+  dev-environment_default:
+    external: true

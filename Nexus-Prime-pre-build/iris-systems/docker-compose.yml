@@ -1,0 +1,51 @@
+services:
+  vector_qpre:
+    build:
+      context: ./vector_qpre
+      dockerfile: Dockerfile
+    container_name: vector_qpre
+    ports:
+      - "8001:8000"
+    networks:
+      - milvus
+      - iris_net
+    environment:
+      - MILVUS_HOST=standalone
+      - MILVUS_PORT=19530
+    restart: unless-stopped
+
+  vector_dss:
+    build:
+      context: ./vector_dss
+      dockerfile: Dockerfile
+    container_name: vector_dss
+    ports:
+      - "8002:8000"
+    networks:
+      - milvus
+      - iris_net
+    environment:
+      - MILVUS_HOST=standalone
+      - MILVUS_PORT=19530
+    restart: unless-stopped
+
+  vector_tcw:
+    build:
+      context: ./vector_tcw
+      dockerfile: Dockerfile
+    container_name: vector_tcw
+    ports:
+      - "8003:8000"
+    networks:
+      - milvus
+      - iris_net
+    environment:
+      - MILVUS_HOST=standalone
+      - MILVUS_PORT=19530
+    restart: unless-stopped
+
+networks:
+  milvus:
+    external: true
+  iris_net:
+    external: true

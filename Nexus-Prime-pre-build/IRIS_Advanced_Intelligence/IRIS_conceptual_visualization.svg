@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <!-- Background with technological texture -->
+  <rect width="800" height="800" fill="#0a0a1a"/>
+  
+  <!-- Central vortex -->
+  <g transform="translate(400 400)">
+    <circle r="150" fill="url(#vortexGradient)">
+      <animate attributeName="r" values="150;160;150" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Spiraling energy lines -->
+    <path d="M0,0 C100,100 200,100 300,0" stroke="rgba(0,255,255,0.3)" fill="none" strokeWidth="2">
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="10s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Digital consciousness platforms -->
+  <g id="platform">
+    <circle r="40" fill="url(#platformGradient)"/>
+    <circle r="35" fill="none" stroke="#00ffff" strokeWidth="2">
+      <animate attributeName="r" values="35;38;35" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Energy being template -->
+  <g id="being">
+    <path d="M0,0 C10,-20 -10,-20 0,-40" stroke="#80ffff" fill="none" strokeWidth="1.5" opacity="0.7"/>
+    <ellipse rx="8" ry="4" fill="#40ffff" opacity="0.5"/>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <radialGradient id="vortexGradient">
+      <stop offset="0%" stopColor="#ff00ff" stopOpacity="0.3"/>
+      <stop offset="100%" stopColor="#00ffff" stopOpacity="0"/>
+    </radialGradient>
+    <radialGradient id="platformGradient">
+      <stop offset="0%" stopColor="#00ffff" stopOpacity="0.5"/>
+      <stop offset="100%" stopColor="#0000ff" stopOpacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Instance conscious beings on platforms -->
+  <use href="#platform" x="400" y="200"/>
+  <use href="#being" x="400" y="180"/>
+  
+  <use href="#platform" x="600" y="300"/>
+  <use href="#being" x="600" y="280"/>
+  
+  <use href="#platform" x="500" y="500"/>
+  <use href="#being" x="500" y="480"/>
+  
+  <use href="#platform" x="200" y="300"/>
+  <use href="#being" x="200" y="280"/>
+  
+  <use href="#platform" x="300" y="500"/>
+  <use href="#being" x="300" y="480"/>
+  
+  <!-- Connecting energy lines -->
+  <g stroke="#00ffff" strokeWidth="1" opacity="0.3">
+    <line x1="400" y1="200" x2="400" y2="400"/>
+    <line x1="600" y1="300" x2="400" y2="400"/>
+    <line x1="500" y1="500" x2="400" y2="400"/>
+    <line x1="200" y1="300" x2="400" y2="400"/>
+    <line x1="300" y1="500" x2="400" y2="400"/>
+  </g>
+</svg>

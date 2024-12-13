@@ -1,0 +1,14 @@
+services:
+  milvus_check:
+    build:
+      context: .
+      dockerfile: Dockerfile.check
+    networks:
+      - milvus_network
+      - dev-environment_default
+
+networks:
+  milvus_network:
+    external: true
+  dev-environment_default:
+    external: true
